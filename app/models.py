@@ -1,4 +1,5 @@
 from . import db
+import json
 
 
 class Player(db.Model):
@@ -32,3 +33,15 @@ class Player(db.Model):
 
         """
         return '<Player %r>' % self.nick
+
+    def to_json(self):
+        """TODO: Docstring for to_json.
+        :returns: TODO
+
+        """
+        return json.dumps({
+            'nick': self.nick,
+            'fuel': self.fuel,
+            'multiplier': self.multiplier,
+            'score': self.score
+        })

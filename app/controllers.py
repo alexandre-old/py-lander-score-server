@@ -5,9 +5,22 @@ class PlayerController():
 
     """Docstring for PlayerController. """
 
-    self.nick = ''
-    self.fuel = 0.0
-    self.multiplier = 0.0
+    nick = ''
+    fuel = 0.0
+    multiplier = 0.0
+
+    def __init__(self, nick, fuel, multiplier):
+        """TODO: Docstring for __init__.
+
+        :nick: TODO
+        :fuel: TODO
+        :multiplier: TODO
+        :returns: TODO
+
+        """
+        self.nick = nick
+        self.fuel = float(fuel)
+        self.multiplier = float(multiplier)
 
     def _calc_score(self):
         """TODO: Docstring for _calc_score.
@@ -32,7 +45,16 @@ class PlayerController():
             nick=self.nick,
             fuel=self.fuel,
             multiplier=self.multiplier,
-            score=self._calc_score
+            score=self._calc_score()
         )
         db.session.add(player)
         db.session.commit()
+
+    @classmethod
+    def get_all_players(cls):
+        """TODO: Docstring for get_all_players.
+
+        :returns: TODO
+
+        """
+        return models.Player.query.all() 

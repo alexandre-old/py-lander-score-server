@@ -23,6 +23,21 @@ def list_players():
         'success': [player.to_json() for player in all_players]})
 
 
+@app.route('/player/<nick>', methods=['GET'])
+def get_player_score(nick):
+    """TODO: Docstring for get_player_score.
+
+    :nick: TODO
+    :returns: TODO
+
+    """
+    player = controllers.PlayerController.get_player(nick=nick)
+    if not player:
+        # yeah, I know...204 there is no reponse data. Just to keep the pattern
+        return flask.jsonify({'no-data': 'nothing'}), 204
+    return flask.jsonify({'success': player.to_json()}), 200
+
+
 @app.route('/player/new', methods=['GET'])
 def gen_player():
     """ TODO: Docstring for gen_player.

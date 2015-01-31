@@ -51,6 +51,16 @@ class PlayerController():
         db.session.commit()
 
     @classmethod
+    def get_player(cls, **filter):
+        """TODO: Docstring for get_player.
+
+        :filter: TODO
+        :returns: TODO
+
+        """
+        return models.Player.query.filter_by(**filter).first()
+
+    @classmethod
     def get_all_players(cls):
         """TODO: Docstring for get_all_players.
 
